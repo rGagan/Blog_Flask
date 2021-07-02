@@ -1,6 +1,7 @@
 from datetime import datetime
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask_sqlalchemy import SQLAlchemy
-from flaskBlog import db, login_mngr
+from flaskBlog import db, login_mngr, app
 from flask_login import UserMixin
 
 @login_mngr.user_loader
@@ -14,6 +15,22 @@ class User(db.Model, UserMixin):
     profile_img = db.Column(db.String(20), nullable=False, default='default.jpeg')
     password = db.Column(db.String(60), nullable=False)
     posts = db.relationship('Post', backref='author', lazy=True)
+
+    def get_reset_token(self, expires_sec=900):
+        s = Serializer(app.config['SECRET_KEY'], expires_sec)
+        return s.dumps({'user_id': self.id}).decode('utf-8')
+
+    # when we don't use self, we have to add staticmethod
+    @staticmethod
+    def verify_reset_token(token):
+        s = Serializer(app.config['SECRET_KEY'])
+        try:
+            user_id=s.loads(token)['user_id']
+        except:
+            return None
+        
+        return User.query.get(user_id)
+
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.profile_img}')"
