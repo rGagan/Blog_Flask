@@ -2,12 +2,15 @@
     {% block content %}
         {% for posts in post %}           
             <article class="media content-section">
+                <!--User Profile-->
+                <img class="rounded-circle article-img" src="{{url_for('static', filename='pfp/'+posts.author.profile_img)}}">
                 <div class="media-body">
                 <div class="article-metadata">
-                    <a class="mr-2" href="#">{{ posts.author }}</a>
-                    <small class="text-muted">{{ posts.date_posted }}</small>
+                    <a class="mr-2" href="#">{{ posts.author.username }}</a>
+                    <!--To display just the YMD-->
+                    <small class="text-muted">{{ posts.date_posted.strftime('%Y-%m-%d') }}</small>
                 </div>
-                <h2><a class="article-title" href="#">{{ posts.title }}</a></h2>
+                <h2><a class="article-title" href="{{url_for('post', post_id=posts.id)}}">{{ posts.title }}</a></h2>
                 <p class="article-content">{{ posts.content }}</p>
                 </div>
             </article>
