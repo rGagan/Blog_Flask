@@ -6,11 +6,11 @@
                 <img class="rounded-circle article-img" src="{{url_for('static', filename='pfp/'+posts.author.profile_img)}}">
                 <div class="media-body">
                 <div class="article-metadata">
-                    <a class="mr-2" href="{{url_for('user_posts', username=posts.author.username)}}">{{ posts.author.username }}</a>
+                    <a class="mr-2" href="{{url_for('users.user_posts', username=posts.author.username)}}">{{ posts.author.username }}</a>
                     <!--To display just the YMD-->
                     <small class="text-muted">{{ posts.date_posted.strftime('%Y-%m-%d') }}</small>
                 </div>
-                <h2><a class="article-title" href="{{url_for('post', post_id=posts.id)}}">{{ posts.title }}</a></h2>
+                <h2><a class="article-title" href="{{url_for('posts.post', post_id=posts.id)}}">{{ posts.title }}</a></h2>
                 <p class="article-content">{{ posts.content }}</p>
                 </div>
             </article>
@@ -21,9 +21,9 @@
             {% if page_num %}
                 <!--If the page number is the same as the current page given by post.page(method of paginate object)-->
                 {% if post.page == page_num %}
-                    <a class="btn btn-info mb-4"href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+                    <a class="btn btn-info mb-4"href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
                 {% else %}
-                    <a class="btn btn-outline-info mb-4"href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+                    <a class="btn btn-outline-info mb-4"href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
                 {% endif %}
             {% else %}
                 ...
