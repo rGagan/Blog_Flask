@@ -4,7 +4,7 @@ import os
 class Config:
     #setting a hash key and sqlite server 
     SECRET_KEY= os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI=os.environ.get('SQLALCHEMY_DATABASE_URI')
+    SQLALCHEMY_DATABASE_URI=os.environ.get('MYSQL_WITHCONNECTOR')
     MAIL_SERVER='smtp.googlemail.com'
     MAIL_PORT=587
     MAIL_USE_TLS=True
