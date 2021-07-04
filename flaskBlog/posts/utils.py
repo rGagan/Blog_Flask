@@ -1,9 +1,7 @@
 import secrets
 import os
 from PIL import Image
-from flask import url_for, current_app
-from flask_mail import Message
-from flaskBlog import mail
+from flask import current_app
 
 def update_pic(picture):
     #we imported secrets to get a random hex
@@ -17,26 +15,13 @@ def update_pic(picture):
     pic_func = random_hex + file_ext
 
     #we save the user's pic which they uploaded in our package
-    pic_path = os.path.join(current_app.root_path, 'static/pfp', pic_func)
+    pic_path = os.path.join(current_app.root_path, 'static/post_pics', pic_func)
 
     #we installed Pillow(inside of it is PIL) to resize our file to a smaller 125px size
-    new_image_size = (125, 125)
+    new_image_size = (600, 900)
     img = Image.open(picture)
     img.thumbnail(new_image_size)
 
     img.save(pic_path)
 
     return pic_func
-    
-def send_reset_email(user):
-    token = user.get_reset_token()
-    msg = Message('Password Reset Link', sender='noreply@demo.com', recipients=[user.email])
-
-    msg.body = f'''To reset your password, click on the following link:
-{url_for('users.reset_token', token=token, _external=True)}
-    
-    
-    
-If you did not make this request, then please ignore.'''
-
-    mail.send(msg)

@@ -1,7 +1,6 @@
 from datetime import datetime
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import current_app
-from flask_sqlalchemy import SQLAlchemy
 from flaskBlog import db, login_mngr
 from flask_login import UserMixin
 
@@ -41,8 +40,9 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     date_posted=db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    post_picture = db.Column(db.String(20), nullable=False, default='default_post.jpeg')
     content =  db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     
     def __repr__(self):
-        return f"Post('{self.title}', '{self.date_posted}')"
+        return f"Post('{self.title}', '{self.date_posted}', '{self.post_picture}')"

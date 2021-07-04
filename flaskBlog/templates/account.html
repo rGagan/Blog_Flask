@@ -1,19 +1,19 @@
 {% extends "layout.html" %}
 {% block content %}
     <div class="content-section">
-        <div class="media">
+        <div class="media d-flex justify-content-center">
             <img class="rounded-circle account-img" src="{{profile_img}}">
             <div class="media-body">
                 <h2 class="account-heading">{{ current_user.username }}</h2>
                 <p class="text-secondary">{{ current_user.email }}</p>
             </div>
         </div>
-        <div class="content-section">
+        <div class="container">
             <form method="POST" action="" enctype="multipart/form-data"> <!-- enctype saves us from file(eg input profile_pic) errors being ignored -->
                 {{ form.hidden_tag() }}
                 <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">Account Update</legend>
-                    <div class="form-group">
+                    <legend class="border-bottom mt-8 mb-4">Account Update</legend>
+                    <div class="form-group p-10">
                         <!--We can use Bootstrap classes inside the paranthesis-->
                         {{ form.username.label(class="form-control-label")}}
         
@@ -44,7 +44,7 @@
                         {{ form.email(class="form-control form-control-lg")}}
                         {%endif%}
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-2">
                         {{ form.pic.label()}}
                         {{ form.pic(class="form-control-file")}}
                         {% if form.pic.errors %}
@@ -54,7 +54,7 @@
                             {%endfor%}
                         {%endif%}
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         {{form.submit(class="btn btn-outline-primary")}}
                     </div>
                 </fieldset>
