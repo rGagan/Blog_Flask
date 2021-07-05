@@ -9,7 +9,7 @@
                 {{ form.username.label(class="form-control-label")}}
 
                 {% if form.username.errors %}
-                {{form.username(class="form-control form-control-lg is-invalid")}}
+                {{form.username(class="form-control form-control-lg is-invalid", placeholder="Your Name")}}
                 <div class="invalid-feedback">
                     {%for error in form.username.errors%}
                     <span>{{error}}</span>
@@ -17,14 +17,14 @@
                 </div>
 
                 {%else%}
-                {{ form.username(class="form-control form-control-lg")}}
+                {{ form.username(class="form-control form-control-lg", placeholder="Your Name")}}
                 {%endif%}
             </div>
             <div class="form-group">
                 {{ form.email.label(class="form-control-label")}}
 
                 {% if form.email.errors %}
-                {{form.email(class="form-control form-control-lg is-invalid")}}
+                {{form.email(class="form-control form-control-lg is-invalid", placeholder="youremail@example.com")}}
                 <div class="invalid-feedback">
                     {%for error in form.email.errors%}
                     <span>{{error}}</span>
@@ -32,7 +32,7 @@
                 </div>
 
                 {%else%}
-                {{ form.email(class="form-control form-control-lg")}}
+                {{ form.email(class="form-control form-control-lg", placeholder="youremail@example.com")}}
                 {%endif%}
             </div>
             <div class="form-group">

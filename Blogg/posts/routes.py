@@ -21,7 +21,7 @@ def new_post():
         db.session.add(post)
         db.session.commit()
         flash(f'Your post has been created! ', 'success')
-        return redirect(url_for('main.home'))
+        return redirect(url_for('home.homepage'))
     return render_template('create_post.html', title='New Post', legend='New Post', form=form)
 
 @posts.route("/post/<int:post_id>")
@@ -62,5 +62,5 @@ def delete_post(post_id):
     db.session.delete(post)
     db.session.commit()
     flash('Your post has been deleted!', 'success')
-    return redirect(url_for('main.home'))
+    return redirect(url_for('home.homepage'))
 

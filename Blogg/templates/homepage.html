@@ -59,9 +59,9 @@
             {% if page_num %}
                 <!--If the page number is the same as the current page given by post.page(method of paginate object)-->
                 {% if post.page == page_num %}
-                    <a class="btn btn-info mb-4"href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
+                    <a class="btn btn-info mb-4"href="{{ url_for('home.homepage', page=page_num) }}">{{ page_num }}</a>
                 {% else %}
-                    <a class="btn btn-outline-info mb-4"href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
+                    <a class="btn btn-outline-info mb-4"href="{{ url_for('home.homepage', page=page_num) }}">{{ page_num }}</a>
                 {% endif %}
             {% else %}
                 ...

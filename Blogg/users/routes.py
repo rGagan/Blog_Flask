@@ -11,7 +11,7 @@ users = Blueprint('users', __name__)
 def register():
     #check if user is already logged in
     if current_user.is_authenticated:
-        return redirect(url_for('main.home'))
+        return redirect(url_for('home.homepage'))
     form= RegistrationForm()
     if form.validate_on_submit():
         #create a hashed pass for the user and adding the details onto the table
@@ -27,7 +27,7 @@ def register():
 def login():
 
     if current_user.is_authenticated:
-        return redirect(url_for('main.home'))
+        return redirect(url_for('home.homepage'))
     form= LoginForm()
     if form.validate_on_submit():
         #match the given password with the hashed password saved in table
@@ -36,7 +36,7 @@ def login():
             login_user(user, remember=form.remember.data)
             flash(f'{form.email.data} logged in succesfully!', 'success')
             next_page = request.args.get('next')
-            return redirect (next_page) if next_page else redirect(url_for('main.home'))
+            return redirect (next_page) if next_page else redirect(url_for('home.homepage'))
         else:
             flash('Login Unsuccessful! Please check email and password.', 'danger')
 
@@ -46,7 +46,7 @@ def login():
 def logout():
     #using logout of Flask_login
     logout_user()
-    return redirect(url_for('main.home'))
+    return redirect(url_for('home.homepage'))
 
 @users.route("/account", methods=['GET', 'POST'])
 @login_required
@@ -89,7 +89,7 @@ def user_posts(username):
 def reset_request():
     #check if user is already logged in
     if current_user.is_authenticated:
-        return redirect(url_for('main.home'))
+        return redirect(url_for('home.homepage'))
 
     form = RequestResetForm()
     if form.validate_on_submit():
@@ -106,7 +106,7 @@ def reset_request():
 def reset_token(token):
     #check if user is already logged in
     if current_user.is_authenticated:
-        return redirect(url_for('main.home'))
+        return redirect(url_for('home.homepage'))
 
     user = User.verify_reset_token(token)
 

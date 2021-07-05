@@ -15,8 +15,13 @@
                 </div>
                 {%endif%}
             </div>
-            <h2 class="article-title" >{{ post.title }}</h2>
-            <p class="article-content">{{ post.content }}</p>
+            <div class="card mt-3">
+                <img src="{{url_for('static', filename='post_pics/'+ post.post_picture)}}" class="card-img-top" alt="Post Picture" style="max-height: 600px;">
+                <div class="card-body">
+                  <h5 class="card-title">{{ post.title }}</h5>
+                  <p class="card-text">{{ post.content }}</p>
+                </div>
+              </div>
         </div>
     </article>
     <!-- Modal -->

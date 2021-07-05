@@ -35,12 +35,12 @@ def create_app(config_class=Config):
     # we register the packages so they're accessible in our app
     from Blogg.users.routes import users
     from Blogg.posts.routes import posts
-    from Blogg.main.routes import main
+    from Blogg.home.routes import home
     from Blogg.errors.handlers import errors
 
     app.register_blueprint(users)
     app.register_blueprint(posts)
-    app.register_blueprint(main)
+    app.register_blueprint(home)
     app.register_blueprint(errors)
     
     return app
