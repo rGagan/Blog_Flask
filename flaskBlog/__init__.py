@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
-from flaskBlog.config import Config
+from flaskBlog.config import Config, DevConfig, ProdConfig
 
 # we created the objects without parameter,
 # so the objects don't initially get bound to the application and we can use them for multiple
@@ -20,7 +20,7 @@ mail = Mail()
 # now we create an example app that takes its config variables from config file
 def create_app(config_class=Config):
     app = Flask(__name__)
-    app.config.from_object(Config)
+    app.config.from_object(config_class)
 
     # we bind the lib objects to the app to use them inside the app
     db.init_app(app)

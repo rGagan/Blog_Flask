@@ -10,3 +10,14 @@ class Config:
     MAIL_USE_TLS=True
     MAIL_USERNAME = os.environ.get('SERVER_EMAIL')
     MAIL_PASSWORD = os.environ.get('SERVER_EMAIL_PASS')
+
+class ProdConfig(Config):
+    FLASK_ENV = 'production'
+    DEBUG = False
+    TESTING = False
+
+
+class DevConfig(Config):
+    FLASK_ENV = 'development'
+    DEBUG = True
+    TESTING = True
