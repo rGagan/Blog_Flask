@@ -5,6 +5,7 @@ errors = Blueprint('errors', __name__)
 
 @errors.errorhandler(400)
 def bad_request():
+    #make_response sends ('data to render', http code, json/string data)
     return make_response(
         render_template("errors/400.html"),
         400

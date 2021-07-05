@@ -45,7 +45,7 @@
                     <hr>
                   <h5 class="card-title pb-2"><a class="article-title" href="{{url_for('posts.post', post_id=posts.id)}}">{{ posts.title }}</a></h5>
                   
-                  <p class="card-text">{{ posts.content }}</p>
+                  <p class="card-text" style="max-height: 100px; overflow:hidden;">{{ posts.content }}</p>
                   <p class="card-text article-content"><small class="text-muted">{{ posts.date_posted.strftime('%Y-%m-%d') }}</small></p>
                 </div>
               </div>

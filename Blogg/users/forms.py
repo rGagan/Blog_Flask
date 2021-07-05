@@ -1,4 +1,4 @@
-from flaskBlog.models import User
+from Blogg.models import User
 from flask_wtf.form import FlaskForm
 from wtforms import (
     BooleanField,

@@ -1,9 +1,9 @@
-from flaskBlog.posts.forms import PostForm
+from Blogg.posts.forms import PostForm
 from flask import Blueprint,render_template, url_for, redirect, flash, request, abort
-from flaskBlog import db
+from Blogg import db
 from flask_login import current_user, login_required
-from flaskBlog.models import Post
-from flaskBlog.posts.utils import update_pic
+from Blogg.models import Post
+from Blogg.posts.utils import update_pic
 
 posts = Blueprint('posts', __name__)
 

@@ -1,5 +1,5 @@
 from flask import Blueprint, request, render_template
-from flaskBlog.models import Post
+from Blogg.models import Post
 
 main = Blueprint('main', __name__)
 

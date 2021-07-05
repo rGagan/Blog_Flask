@@ -3,7 +3,7 @@ import os
 from PIL import Image
 from flask import url_for, current_app
 from flask_mail import Message
-from flaskBlog import mail
+from Blogg import mail
 
 def update_pic(picture):
     #we imported secrets to get a random hex

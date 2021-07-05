@@ -3,7 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
-from flaskBlog.config import Config, DevConfig, ProdConfig
+from Blogg.config import Config, DevConfig, ProdConfig
+
+
+# Globally accessible libraries
+
 
 # we created the objects without parameter,
 # so the objects don't initially get bound to the application and we can use them for multiple
@@ -22,17 +26,17 @@ def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
 
-    # we bind the lib objects to the app to use them inside the app
+    #Initialize Plugins( we bind the lib objects to the app to use them inside the app)
     db.init_app(app)
     bcrypt.init_app(app)
     login_mngr.init_app(app)
     mail.init_app(app)
 
-    # we register the packages so they're accessible in out app
-    from flaskBlog.users.routes import users
-    from flaskBlog.posts.routes import posts
-    from flaskBlog.main.routes import main
-    from flaskBlog.errors.handlers import errors
+    # we register the packages so they're accessible in our app
+    from Blogg.users.routes import users
+    from Blogg.posts.routes import posts
+    from Blogg.main.routes import main
+    from Blogg.errors.handlers import errors
 
     app.register_blueprint(users)
     app.register_blueprint(posts)
