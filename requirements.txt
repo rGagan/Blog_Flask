@@ -1,3 +1,4 @@
+Python==3.6.9
 awscli==1.19.105
 bcrypt==3.2.0
 blinker==1.4
