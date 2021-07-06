@@ -4,6 +4,7 @@ from Blogg.models import Post, User
 from Blogg.users.forms import LoginForm, RegistrationForm, RequestResetForm, ResetPasswordForm, UpdateAccountForm
 from flask import Blueprint, render_template, url_for, redirect, flash, request
 from flask_login import current_user, login_user, login_required, logout_user
+from Blogg.aws_functions import upload_img, show_img
 
 users = Blueprint('users', __name__)
 
@@ -51,12 +52,13 @@ def logout():
 @users.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
-    profile_img = url_for('static', filename='pfp/'+ current_user.profile_img)
+    profile_img =show_img()+current_user.profile_img
     form=UpdateAccountForm()
     if form.validate_on_submit():
         if form.pic.data:
             pic_newname = update_pic(form.pic.data)
             current_user.profile_img = pic_newname
+            upload_img(pic_newname, form.pic.data)
         #we cange the details of current user
         current_user.username = form.username.data
         current_user.email = form.email.data
@@ -83,7 +85,7 @@ def user_posts(username):
     # \ to break up to other line 
     post = Post.query.filter_by(author=user)\
         .order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
-    return render_template('user_posts.html', post=post, user=user)
+    return render_template('user_posts.html', post=post, user=user, image=show_img())
 
 @users.route("/reset_password", methods=['GET', 'POST'])
 def reset_request():

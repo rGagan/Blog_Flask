@@ -1,5 +1,6 @@
 from flask import Blueprint, request, render_template
 from Blogg.models import Post
+from Blogg.aws_functions import show_img
 
 home = Blueprint('home', __name__)
 
@@ -14,7 +15,7 @@ def homepage():
     #paginate doesn't send all the queries back. It divides the posts in pages
     #order by newest
     post = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
-    return render_template('homepage.html', post=post)
+    return render_template('homepage.html', post=post, image=show_img())
 
 @home.route("/about")
 def about():

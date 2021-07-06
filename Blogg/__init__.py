@@ -6,6 +6,7 @@ from flask_mail import Mail
 from Blogg.config import Config, DevConfig, ProdConfig
 
 
+
 # Globally accessible libraries
 
 

@@ -2,7 +2,7 @@
 {% block content %}           
     <article class="media content-section">
         <!--User Profile-->
-        <img class="rounded-circle article-img" src="{{url_for('static', filename='pfp/'+post.author.profile_img)}}">
+        <img class="rounded-circle article-img" src="{{image+post.author.profile_img}}">
         <div class="media-body">
             <div class="article-metadata">
                 <a class="mr-2" href="{{url_for('users.user_posts', username=post.author.username)}}">{{ post.author.username }}</a>
@@ -16,7 +16,7 @@
                 {%endif%}
             </div>
             <div class="card mt-3">
-                <img src="{{url_for('static', filename='post_pics/'+ post.post_picture)}}" class="card-img-top" alt="Post Picture" style="max-height: 600px;">
+                <img src="{{image+ post.post_picture}}" class="card-img-top" alt="Post Picture" style="max-height: 600px;">
                 <div class="card-body">
                   <h5 class="card-title">{{ post.title }}</h5>
                   <p class="card-text">{{ post.content }}</p>

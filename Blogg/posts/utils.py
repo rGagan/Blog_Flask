@@ -14,14 +14,4 @@ def update_pic(picture):
 
     pic_func = random_hex + file_ext
 
-    #we save the user's pic which they uploaded in our package
-    pic_path = os.path.join(current_app.root_path, 'static/post_pics', pic_func)
-
-    #we installed Pillow(inside of it is PIL) to resize our file to a smaller 125px size
-    new_image_size = (600, 900)
-    img = Image.open(picture)
-    img.thumbnail(new_image_size)
-
-    img.save(pic_path)
-
     return pic_func
