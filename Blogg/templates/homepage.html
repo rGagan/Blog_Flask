@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+        <div class="row welcome text-center">
+            <div class="col-12">
+                <h1 class="display-4">Built with</h1>
+            </div>
+        </div>
+        <div id="slides" class="carousel slide carousel-fade carousel-dark slide " data-bs-ride="carousel">
+            <div class="carousel-indicators">
+            <button type="button" data-bs-target="#slides" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#slides" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#slides" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="4000">
+                <img src="{{url_for('static', filename='pfp/Flask_logo.png') }}" class="d-block w-100 h-60" alt="...">
+            </div>
+
+            <div class="carousel-item " data-bs-interval="3000">
+                <img src="{{url_for('static', filename='pfp/sqlalchemy.jpg') }}" class="d-block w-100 h-60" alt="...">
+                
+            </div>
+            <div class="carousel-item" data-bs-interval="3000">
+                <img src="{{url_for('static', filename='pfp/bootstrap.png') }}" class="d-block w-100 h-60" alt="...">
+
+            </div>
+            </div>
+        </div>
+    </div>
+    <hr class="mt-5 mb-5">
+
+        {% for posts in post.items %}
+        <div class="card mb-3">
+            <div class="row no-gutters">
+              <div class="col-md-4 xs-6">
+                <img src="{{url_for('static', filename='post_pics/'+ posts.post_picture)}}" class="card-img full-size" alt="{{posts.post_picture}}">
+              </div>
+              <div class="col-md-8 xs 6">
+                <div class="card-body">
+                    <div>
+                        <img class="rounded-circle article-img" src="{{url_for('static', filename='pfp/'+posts.author.profile_img)}}">
+                        <a class="mr-2" href="{{url_for('users.user_posts', username=posts.author.username)}}">{{ posts.author.username }}</a>
+                    </div>
+                    <hr>
+                  <h5 class="card-title pb-2"><a class="article-title" href="{{url_for('posts.post', post_id=posts.id)}}">{{ posts.title }}</a></h5>
+                  
+                  <p class="card-text" style="max-height: 100px; overflow:hidden;">{{ posts.content }}</p>
+                  <p class="card-text article-content"><small class="text-muted">{{ posts.date_posted.strftime('%Y-%m-%d') }}</small></p>
+                </div>
+              </div>
+            </div>
+          </div>           
+           
+        {% endfor %}
+         <!-- paginate.iter_pages  divides the pages intogroups separated by none, e.g. 1 2 none 4 5 6 none 8-->
+         <!-- edge parameter - number of pages next to 'none'-->
+        {% for page_num in post.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}  
+            {% if page_num %}
+                <!--If the page number is the same as the current page given by post.page(method of paginate object)-->
+                {% if post.page == page_num %}
+                    <a class="btn btn-info mb-4"href="{{ url_for('home.homepage', page=page_num) }}">{{ page_num }}</a>
+                {% else %}
+                    <a class="btn btn-outline-info mb-4"href="{{ url_for('home.homepage', page=page_num) }}">{{ page_num }}</a>
+                {% endif %}
+            {% else %}
+                ...
+            {% endif %}
+        {% endfor %}
+{% endblock content %}
