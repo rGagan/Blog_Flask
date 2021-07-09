@@ -30,7 +30,7 @@ def update_pic(picture):
     
 def send_reset_email(user):
     token = user.get_reset_token()
-    msg = Message('Password Reset Link', sender='noreply@demo.com', recipients=[user.email])
+    msg = Message('Password Reset Link', sender='admin@mail.com', recipients=[user.email])
 
     msg.body = f'''To reset your password, click on the following link:
 {url_for('users.reset_token', token=token, _external=True)}

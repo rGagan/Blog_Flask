@@ -1,6 +1,5 @@
 import os
 
-
 class Config:
     #setting a hash key and sqlite server 
     SECRET_KEY= os.environ.get('SECRET_KEY')

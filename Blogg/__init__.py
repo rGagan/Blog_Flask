@@ -13,11 +13,11 @@ from Blogg.config import Config, DevConfig, ProdConfig
 # so the objects don't initially get bound to the application and we can use them for multiple
 db=SQLAlchemy()
 bcrypt=Bcrypt()
-login_mngr = LoginManager()
+login_manager = LoginManager()
 
 #to direct the login_required to the login page when we tryto see account info without being loggd in
-login_mngr.login_view = 'users.login'
-login_mngr.login_message_category = 'info'
+login_manager.login_view = 'users.login'
+login_manager.login_message_category = 'info'
 
 mail = Mail()
 
@@ -29,7 +29,7 @@ def create_app(config_class=Config):
     #Initialize Plugins( we bind the lib objects to the app to use them inside the app)
     db.init_app(app)
     bcrypt.init_app(app)
-    login_mngr.init_app(app)
+    login_manager.init_app(app)
     mail.init_app(app)
 
     # we register the packages so they're accessible in our app

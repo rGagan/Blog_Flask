@@ -2,6 +2,7 @@
 {% block content %}
 <div class="content-section">
     <form method="POST" action="">
+        <!--With secret key set, hidden_tag() protects the app from CSRF attacks-->
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">Reset Password</legend>
